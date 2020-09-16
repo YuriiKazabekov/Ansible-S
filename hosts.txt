@@ -1,0 +1,10 @@
+
+[linux_1]
+172.31.3.133
+
+[linux_2]
+172.31.12.126
+
+[linux_all:children]
+linux_1
+linux_2
