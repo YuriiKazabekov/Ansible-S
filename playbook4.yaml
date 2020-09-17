@@ -1,0 +1,42 @@
+---
+- name: Vars studying
+  hosts: all
+  become: yes
+
+  vars:
+    message1: Hello
+    message2: World
+    secret: AJHFSHEDGHEGH
+
+  tasks:
+
+  - name: Print Secret Var
+    debug:
+      var: secret
+
+  - name: Print message
+    debug:
+      msg: "secret word {{ secret }}"
+
+  - name: Print owner
+    debug:
+      msg: "This server owner is -->{{ owner }}<--"
+
+  - name: concantenate vars
+    set_fact: full_message=" {{ message1 }} {{ message2 }} from {{ owner }}"
+  
+  - name: Print concatenated vars
+    debug:
+      var: full_message
+  - name: Print var from setup
+    debug:
+      var: ansible_distribution
+
+  - name: Run shell command and return result
+    shell: uptime
+    register: results
+ 
+  - name: Print result
+    debug:
+      var: results.stdout
+
